@@ -56,3 +56,58 @@ A solução foi construída utilizando os seguintes componentes:
 └── scripts/
     └── api_trigger.ps1
 ```
+# ⚙️ Playbooks
+
+## auditar_windows.yml
+
+Realiza auditoria de atualizações pendentes em servidores Windows.
+
+---
+
+## instalar_monitoramento.yml
+
+Automatiza a instalação de agentes de monitoramento em novos servidores.
+
+---
+
+## corrigir_monitoramento.yml
+
+Executa ações de remediação para restaurar agentes indisponíveis.
+
+---
+
+## verificar_antivirus.yml
+
+Verifica a conformidade e o status operacional do antivírus.
+
+# 📈 Benefícios
+
+- Redução de tarefas manuais.
+- Padronização de processos operacionais.
+- Melhoria na resposta a incidentes.
+- Automação de auditorias.
+- Facilidade para expansão da solução.
+
+## 🔒 Observação
+
+Este repositório representa uma versão demonstrativa do projeto, desenvolvida para fins de estudo e portfólio.
+
+Nenhuma informação confidencial, credencial ou configuração interna da empresa foi incluída.
+
+Usuário
+    │
+    ▼
+PowerShell
+    │
+    ▼
+Semaphore
+    │
+    ▼
+Ansible
+    │
+    ├────────► Windows Server
+    │
+    └────────► Agentes de Monitoramento
+                     │
+                     ▼
+                 Grafana
