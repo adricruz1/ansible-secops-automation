@@ -1,4 +1,11 @@
 # 🚀 Ansible SecOps Automation
+![Ansible](https://img.shields.io/badge/Ansible-Automation-red)
+
+![PowerShell](https://img.shields.io/badge/PowerShell-Windows-blue)
+
+![Grafana](https://img.shields.io/badge/Grafana-Monitoring-orange)
+
+![Windows](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-success)
 
 Automação de processos de Segurança da Informação, Infraestrutura e Resposta a Incidentes utilizando **Ansible**, **Semaphore**, **PowerShell** e **Grafana**.
 
@@ -94,20 +101,23 @@ Este repositório representa uma versão demonstrativa do projeto, desenvolvida 
 
 Nenhuma informação confidencial, credencial ou configuração interna da empresa foi incluída.
 
-Usuário
-    │
-    ▼
-PowerShell
-    │
-    ▼
-Semaphore
-    │
-    ▼
-Ansible
-    │
-    ├────────► Windows Server
-    │
-    └────────► Agentes de Monitoramento
-                     │
-                     ▼
-                 Grafana
+```text
+                Usuário
+                   │
+                   ▼
+           PowerShell Script
+                   │
+                   ▼
+        Semaphore REST API
+                   │
+                   ▼
+        Ansible Playbooks
+                   │
+     ┌─────────────┴─────────────┐
+     ▼                           ▼
+Windows Servers          Monitoramento
+     │                           │
+     └─────────────┬─────────────┘
+                   ▼
+                Grafana
+```
