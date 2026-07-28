@@ -1,29 +1,58 @@
-# 🚀 Automação de SecOps, Monitoramento e Resposta a Incidentes
+# 🚀 Ansible SecOps Automation
 
-Este repositório centraliza soluções de **SecOps, Infraestrutura como Código (IaC) e Automação de Resposta a Incidentes**, integrando ferramentas de monitoramento em tempo real, orquestração de playbooks e scripts de integração via API REST.
-
----
-
-## 🛠️ Arquitetura e Tecnologias
-
-* **Ansible / Ansible Semaphore:** Orquestração e execução automatizada de playbooks de segurança, remediação e auditoria em ambientes Windows e Linux.
-* **Grafana:** Painéis de observabilidade (NOC) para monitoramento de métricas e gatilhos operacionais.
-* **PowerShell:** Automação de tarefas nativas do Windows, auditoria de patches e consumo de APIs REST.
+Automação de processos de Segurança da Informação, Infraestrutura e Resposta a Incidentes utilizando **Ansible**, **Semaphore**, **PowerShell** e **Grafana**.
 
 ---
 
-## 📂 Estrutura do Repositório
+# 🎯 Problema
+
+Em ambientes corporativos, atividades como auditoria de servidores, verificação de antivírus, instalação de agentes de monitoramento e resposta a incidentes costumam ser repetitivas e suscetíveis a erros manuais.
+
+Além disso, a execução dessas tarefas de forma manual aumenta o tempo de resposta da equipe de infraestrutura e segurança.
+
+Este projeto foi desenvolvido para automatizar essas atividades através da integração entre Ansible, Semaphore, PowerShell e Grafana.
+
+---
+
+# 💡 Solução
+
+A solução centraliza a execução de playbooks de automação e monitoramento, permitindo padronizar processos operacionais e reduzir atividades manuais.
+
+Entre as funcionalidades implementadas estão:
+
+- Auditoria automática de patches Windows;
+- Instalação automatizada de agentes de monitoramento;
+- Correção de agentes indisponíveis;
+- Verificação de conformidade do antivírus;
+- Integração com API REST utilizando PowerShell;
+- Dashboards operacionais no Grafana.
+
+---
+
+# 🏗️ Arquitetura
+
+A solução foi construída utilizando os seguintes componentes:
+
+- **Ansible** – Automação e execução de playbooks.
+- **Ansible Semaphore** – Orquestração dos playbooks via interface web e API.
+- **PowerShell** – Integração com APIs REST e automação em ambientes Windows.
+- **Grafana** – Visualização de métricas e dashboards operacionais (NOC).
+
+---
+
+# 📂 Estrutura do Projeto
 
 ```text
 .
 ├── ansible/
 │   └── playbooks/
-│       ├── auditar_windows.yml          # Auditoria de atualizações e patches pendentes
-│       ├── corrigir_monitoramento.yml   # Correção e restauração de agentes de monitoramento
-│       ├── instalar_monitoramento.yml   # Deploy automatizado de agentes de observabilidade
-│       └── verificar_antivirus.yml      # Verificação de status e conformidade de antivírus
+│       ├── auditar_windows.yml
+│       ├── corrigir_monitoramento.yml
+│       ├── instalar_monitoramento.yml
+│       └── verificar_antivirus.yml
 ├── grafana/
 │   └── dashboards/
-│       └── windows_noc.json             # Exportação JSON do painel de monitoramento e NOC
+│       └── windows_noc.json
 └── scripts/
-    └── api_trigger.ps1                  # Script de integração para disparo de tarefas via API REST do Semaphore
+    └── api_trigger.ps1
+```
