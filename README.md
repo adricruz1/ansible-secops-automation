@@ -45,6 +45,30 @@ A solução foi construída utilizando os seguintes componentes:
 - **PowerShell** – Integração com APIs REST e automação em ambientes Windows.
 - **Grafana** – Visualização de métricas e dashboards operacionais (NOC).
 
+## 🔄 Automation Workflow
+
+![Workflow](docs/images/workflow.png)
+
+## 🏗️ Architecture
+
+![Architecture](docs/images/architecture.png)
+
+## 📊 Grafana Dashboard
+
+![Dashboard](docs/images/dashboard.png)
+
+## ⚙️ Semaphore
+
+![Semaphore](docs/images/semaphore.png)
+
+## 🛠️ Technologies
+
+- Ansible
+- Ansible Semaphore
+- PowerShell
+- Grafana
+- Windows Server
+- REST API
 ---
 
 # 📂 Estrutura do Projeto
