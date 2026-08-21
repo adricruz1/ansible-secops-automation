@@ -1,13 +1,11 @@
-# 🚀 Ansible SecOps Automation
+# 🚀 Ansible SecOps & Self-Healing Automation
 ![Ansible](https://img.shields.io/badge/Ansible-Automation-red)
-
 ![PowerShell](https://img.shields.io/badge/PowerShell-Windows-blue)
-
 ![Grafana](https://img.shields.io/badge/Grafana-Monitoring-orange)
-
 ![Windows](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-success)
+![AIOps](https://img.shields.io/badge/Architecture-Self--Healing-brightgreen)
 
-Automação de processos de Segurança da Informação, Infraestrutura e Resposta a Incidentes utilizando **Ansible**, **Semaphore**, **PowerShell** e **Grafana**.
+Automação de processos de Segurança da Informação, Infraestrutura, Resposta a Incidentes e **Auto-Remediação de Serviços (Self-Healing)** utilizando **Ansible**, **Semaphore**, **PowerShell** e **Grafana**.
 
 ---
 
@@ -15,23 +13,22 @@ Automação de processos de Segurança da Informação, Infraestrutura e Respost
 
 Em ambientes corporativos, atividades como auditoria de servidores, verificação de antivírus, instalação de agentes de monitoramento e resposta a incidentes costumam ser repetitivas e suscetíveis a erros manuais.
 
-Além disso, a execução dessas tarefas de forma manual aumenta o tempo de resposta da equipe de infraestrutura e segurança.
-
-Este projeto foi desenvolvido para automatizar essas atividades através da integração entre Ansible, Semaphore, PowerShell e Grafana.
+Além disso, a indisponibilidade de serviços essenciais (como agentes de exportação de métricas) exige intervenção humana contínua, aumentando o **MTTR (Mean Time to Repair)** e sobrecarregando as equipes de infraestrutura e NOC.
 
 ---
 
 # 💡 Solução
 
-A solução centraliza a execução de playbooks de automação e monitoramento, permitindo padronizar processos operacionais e reduzir atividades manuais.
+A solução centraliza a execução de playbooks de automação, padronizando processos operacionais e adicionando uma camada de **Auto-Remediação de Infraestrutura (AIOps)**.
 
 Entre as funcionalidades implementadas estão:
 
+- **Self-Healing / Auto-Remediação:** Detecção e reinicialização automática de serviços caídos via Webhook de maneira isolada;
 - Auditoria automática de patches Windows;
 - Instalação automatizada de agentes de monitoramento;
-- Correção de agentes indisponíveis;
+- Correção preventiva de agentes indisponíveis;
 - Verificação de conformidade do antivírus;
-- Integração com API REST utilizando PowerShell;
+- Integração com API REST utilizando PowerShell e Webhooks JSON;
 - Dashboards operacionais no Grafana.
 
 ---
@@ -40,108 +37,20 @@ Entre as funcionalidades implementadas estão:
 
 A solução foi construída utilizando os seguintes componentes:
 
-- **Ansible** – Automação e execução de playbooks.
-- **Ansible Semaphore** – Orquestração dos playbooks via interface web e API.
-- **PowerShell** – Integração com APIs REST e automação em ambientes Windows.
-- **Grafana** – Visualização de métricas e dashboards operacionais (NOC).
+- **Ansible** – Automação, sanitização de variáveis e execução das tarefas.
+- **Ansible Semaphore** – Orquestração de tarefas, gestão de credenciais NTLM WinRM e consumo de Webhooks.
+- **Grafana Alerting** – Monitoramento contínuo e gatilho de alertas em tempo real.
+- **PowerShell** – Integração local em ambientes Windows e administração de serviços.
 
-## 🔄 Automation Workflow
-
-![Workflow](docs/images/workflow.png)
-
-## 🏗️ Architecture
-
-![Architecture](docs/images/architecture.png)
-
-## 📊 Grafana Dashboard
-
-![Dashboard](docs/images/dashboard.png)
-
-## ⚙️ Semaphore
-
-![Semaphore](docs/images/semaphore.png)
-
-## 🛠️ Technologies
-
-- Ansible
-- Ansible Semaphore
-- PowerShell
-- Grafana
-- Windows Server
-- REST API
----
-
-# 📂 Estrutura do Projeto
+## 🔄 Fluxo de Auto-Remediação (Self-Healing)
 
 ```text
-.
-├── ansible/
-│   └── playbooks/
-│       ├── auditar_windows.yml
-│       ├── corrigir_monitoramento.yml
-│       ├── instalar_monitoramento.yml
-│       └── verificar_antivirus.yml
-├── grafana/
-│   └── dashboards/
-│       └── windows_noc.json
-└── scripts/
-    └── api_trigger.ps1
-```
-# ⚙️ Playbooks
-
-## auditar_windows.yml
-
-Realiza auditoria de atualizações pendentes em servidores Windows.
-
----
-
-## instalar_monitoramento.yml
-
-Automatiza a instalação de agentes de monitoramento em novos servidores.
-
----
-
-## corrigir_monitoramento.yml
-
-Executa ações de remediação para restaurar agentes indisponíveis.
-
----
-
-## verificar_antivirus.yml
-
-Verifica a conformidade e o status operacional do antivírus.
-
-# 📈 Benefícios
-
-- Redução de tarefas manuais.
-- Padronização de processos operacionais.
-- Melhoria na resposta a incidentes.
-- Automação de auditorias.
-- Facilidade para expansão da solução.
-
-## 🔒 Observação
-
-Este repositório representa uma versão demonstrativa do projeto, desenvolvida para fins de estudo e portfólio.
-
-Nenhuma informação confidencial, credencial ou configuração interna da empresa foi incluída.
-
-```text
-                Usuário
-                   │
-                   ▼
-           PowerShell Script
-                   │
-                   ▼
-        Semaphore REST API
-                   │
-                   ▼
-        Ansible Playbooks
-                   │
-     ┌─────────────┴─────────────┐
-     ▼                           ▼
-Windows Servers          Monitoramento
-     │                           │
-     └─────────────┬─────────────┘
-                   ▼
-                Grafana
-```
+[ Windows Server ] ──(Queda do Serviço)──> [ Grafana Alerting ]
+                                                    │
+                                        (Custom Webhook JSON)
+                                                    ▼
+[ Ansible Playbook ] <──(Extrai Variable)─── [ Semaphore UI ]
+        │
+  (Sanitiza IP / Filtra Host)
+        ▼
+[ Serviço Restabelecido ] (Apenas no servidor afetado)
