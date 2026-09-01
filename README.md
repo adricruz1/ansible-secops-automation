@@ -39,7 +39,6 @@ Entre as funcionalidades implementadas estão:
 ### 📱 Alertas no Telegram (Auditoria de Privilégios em Tempo Real)
 > Notificações ricas e limpas enviadas diretamente ao time de SecOps sem ruídos de metadados.
 
-*(Adicione seu print aqui: `docs/images/telegram_alert.png`)*
 ![Telegram Alerts](docs/images/telegram_alert.png)
 
 ---
