@@ -39,7 +39,7 @@ Entre as funcionalidades implementadas estão:
 ### 📱 Alertas no Telegram (Auditoria de Privilégios em Tempo Real)
 > Notificações ricas e limpas enviadas diretamente ao time de SecOps sem ruídos de metadados.
 
-![Telegram Alerts]([docs/images/telegram_alert.png](https://github.com/adricruz1/ansible-secops-automation/blob/main/docs/images/evidencia-Telegram.png))
+![Telegram Alerts](docs/images/evidencia-Telegram.png)
 
 ---
 
